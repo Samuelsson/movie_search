@@ -1,0 +1,70 @@
+<!doctype html>
+<html data-ng-app="app" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0">
+    <title>Movie Search</title>
+    <link rel="stylesheet" href="styles/app.css">
+    <script src="assets/angular-1.6.3.min.js"></script>
+
+    <!-- Not very beautiful to add all as scripts like this, but works for this simple app :) -->
+    <script src="app/app.module.js"></script>
+    <script src="app/app.service.js"></script>
+    <script src="app/app.controller.js"></script>
+</head>
+<body>
+
+<header>
+    Movie Search
+</header>
+
+<div class="content" data-ng-controller="AppController as ctrl">
+
+    <form class="form-container">
+        <input data-ng-model="titleInput" type="text" name="movie-search-field" placeholder="Movie Title" autofocus/>
+        <button data-ng-click="ctrl.submitSearch(titleInput)" data-ng-disabled="ctrl.searchDisabled">
+            Search
+        </button>
+    </form>
+
+    <div class="error-message" data-ng-hide="ctrl.message === undefined">
+        {{ctrl.message}}
+    </div>
+
+    <table class="search-result" data-ng-show="ctrl.searchResult.length">
+        <tr>
+            <th><a href="#" data-ng-click="ctrl.sortList('Title')">
+                Title
+                <div data-ng-class="ctrl.sortOrderArrow('Title')">
+                    &#x25BE;
+                </div>
+            </a></th>
+            <th><a href="#" data-ng-click="ctrl.sortList('Year')">
+                Year
+                <div data-ng-class="ctrl.sortOrderArrow('Year')">
+                    &#x25BE;
+                </div>
+            </a></th>
+        </tr>
+        <tr ng-repeat="result in ctrl.searchResult | orderBy:ctrl.sortBy:ctrl.descOrder"
+            data-ng-click="ctrl.openImdbLink(result.imdbID)">
+            <td>{{result.Title}}</td>
+            <td>{{result.Year}}</td>
+        </tr>
+    </table>
+
+    <table class="search-history" data-ng-show="ctrl.searchHistory.length">
+        <tr>
+            <th>
+                Latest Searches
+            </th>
+        </tr>
+        <tr data-ng-repeat="history in ctrl.searchHistory track by $index">
+            <td>{{history}}</td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

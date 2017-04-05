@@ -1,0 +1,197 @@
+/* --------------------------------------------------
+ * Resetters and base
+ * -------------------------------------------------- */
+html { height: 100%; }
+
+body {
+    margin: 0;
+    height: 100%;
+    background-color: rgb(255, 255 ,255);
+    font-family: sans-serif;
+    text-align: center;
+    color: rgb(85, 85 ,85);
+}
+
+.error-message {
+    margin-bottom: 40px;
+}
+
+
+/* --------------------------------------------------
+ * Top header
+ * -------------------------------------------------- */
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    height: 50px;
+    width: 100%;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+    background-color: rgb(90, 115, 190);
+}
+
+
+/* --------------------------------------------------
+ * Main content
+ * -------------------------------------------------- */
+.content {
+    margin: 0 auto;
+    padding: 50px 20px 20px;
+    min-height: calc(100% - 70px);
+    width: 980px;
+    background-color: rgb(245, 245, 245);
+    -webkit-box-shadow: 0 0 7px rgba(0, 0, 0, .35);
+       -moz-box-shadow: 0 0 7px rgba(0, 0, 0, .35);
+            box-shadow: 0 0 7px rgba(0, 0, 0, .35);
+}
+
+.error-message {
+    padding: 15px;
+    color: rgb(255, 255, 255);
+    background-color: rgb(210, 130, 120);
+}
+
+@media only screen and (max-width: 1060px) {
+    .content { width: 680px; }
+}
+
+@media only screen and (max-width: 760px) {
+    .content { width: calc(100% - 40px); }
+}
+
+
+/* --------------------------------------------------
+ * Search Form
+ * -------------------------------------------------- */
+input {
+    outline: none;
+    margin: 40px 0 0;
+    padding: 15px;
+    width: 640px;
+    border: 1px solid rgb(221, 221, 221);
+    font-family: sans-serif;
+    font-size: 14px;
+    color: rgb(85, 85 ,85);
+    background-color: rgb(255, 255, 255);
+}
+
+/* Changing the placeholder text to a lighter one */
+input::-webkit-input-placeholder { color: rgb(187, 187, 187); }
+     input:-ms-input-placeholder { color: rgb(187, 187, 187); }
+         input::-moz-placeholder { color: rgb(187, 187, 187); }
+          input:-moz-placeholder { color: rgb(187, 187, 187); }
+
+button {
+    display: block;
+    width: 250px;
+    padding: 15px 15px 12px;
+    margin: 20px auto 40px;
+    background-color: rgb(90, 115, 190);
+    border-style: none;
+    border-bottom: 3px solid rgb(70, 95, 170);
+    font-size: 14px;
+    text-transform: uppercase;
+    color: rgb(255, 255, 255);
+}
+
+button:hover {
+    background-color: rgb(80, 105, 180);
+    cursor: pointer;
+}
+
+button:focus { outline: 0; }
+
+button:disabled {
+    background-color: rgb(190, 190, 190);
+    border-bottom: 3px solid rgb(170, 170, 170);
+}
+
+@media only screen and (max-width: 1060px) {
+    input { width: 440px; }
+}
+
+@media only screen and (max-width: 760px) {
+    input { width: calc(100% - 32px); }
+    button { width: 100%; }
+}
+
+
+/* --------------------------------------------------
+ * Table & Search Result
+ * A little messy, I blame the table CSS in general and
+ * the lack of CSS preprocessors :)
+ * -------------------------------------------------- */
+.search-result { margin-bottom: 40px; }
+
+table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+    -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, .25);
+       -moz-box-shadow: 0 0 4px rgba(0, 0, 0, .25);
+            box-shadow: 0 0 4px rgba(0, 0, 0, .25);
+}
+
+table a { text-decoration: none; }
+
+th {
+    padding: 10px;
+    border-bottom: 3px solid rgb(60, 85, 160);
+    border-right: 1px solid rgb(60, 85, 160);
+    white-space: nowrap;
+    background-color: rgb(90, 115, 190);
+}
+
+th a {
+    color: rgb(255, 255, 255);
+    font-weight: normal;
+}
+
+tr { border-bottom: 1px solid rgb(220, 220, 220); }
+
+td {
+    padding: 10px;
+    border-right: 1px solid rgb(220, 220, 220);
+}
+
+/* Setting different bg colors for odd and even rows */
+tr:nth-child(odd) td { background-color: rgb(245, 245, 245); }
+tr:nth-child(even) td { background-color: rgb(255, 255, 255); }
+
+/* removes the right border of the last cell in both th and td */
+th:last-child { border-right: none; }
+td:last-child { border-right: none; }
+tr:last-child { border-bottom: none; }
+
+.search-result tr:hover td {
+    background-color: rgb(110, 135, 220);
+    cursor: pointer;
+    color: rgb(255, 255, 255);
+}
+
+/* "th div", rotated and hidden are used to rotate the sort arrow depending on chosen sortBy */
+th div {
+    display: inline-block;
+    height: 80%;
+}
+
+th .rotated { transform: rotate(180deg); }
+th .hidden { opacity: 0 }
+
+
+/* --------------------------------------------------
+ * Search History
+ * -------------------------------------------------- */
+.search-history { width: 50%; }
+
+@media only screen and (max-width: 760px) {
+    .search-history { width: 100%; }
+}
+
+.search-history th {
+    border-bottom: 3px solid rgb(160, 160, 160);
+    background-color: rgb(190, 190, 190);
+    font-weight: normal;
+}
